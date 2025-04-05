@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/backgroundImage"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/bg_amiibo"
+        android:scaleType="centerCrop"
+        android:alpha="0.5"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:elevation="-1dp" />
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Les règles du quizz"
+        android:fontFamily="@font/bauhaus"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="32dp" />
+
+    <!-- Bloc scores -->
+    <LinearLayout
+        android:id="@+id/scoreContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginVertical="40dp">
+
+        <!-- +2 -->
+        <LinearLayout
+            android:orientation="vertical"
+            android:gravity="center"
+            android:id="@+id/scorePositive"
+            android:layout_margin="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="+2"
+                android:textSize="18sp"
+                android:textColor="@android:color/white"
+                android:backgroundTint="#00B050"
+                android:background="@drawable/bg_score_positive"
+                android:layout_width="60dp"
+                android:gravity="center"
+                android:layout_height="60dp"
+                android:padding="8dp"
+                android:layout_marginBottom="4dp" />
+
+            <TextView
+                android:text="Bonne\nréponse"
+                android:textAlignment="center"
+                android:textSize="12sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/black" />
+        </LinearLayout>
+
+        <!-- -1 -->
+        <LinearLayout
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_margin="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="-1"
+                android:textSize="18sp"
+                android:textColor="@android:color/white"
+                android:backgroundTint="#FEC000"
+                android:layout_width="60dp"
+                android:gravity="center"
+                android:layout_height="60dp"
+                android:background="@drawable/bg_score_pass"
+                android:padding="8dp"
+                android:layout_marginBottom="4dp" />
+
+            <TextView
+                android:text="Passer\nla question"
+                android:textAlignment="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:textColor="@android:color/black" />
+        </LinearLayout>
+
+        <!-- -2 -->
+        <LinearLayout
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_margin="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="-2"
+                android:textSize="18sp"
+                android:textColor="@android:color/white"
+                android:backgroundTint="#E30613"
+                android:layout_width="60dp"
+                android:gravity="center"
+                android:layout_height="60dp"
+                android:background="@drawable/bg_score_negative"
+                android:padding="8dp"
+                android:layout_marginBottom="4dp" />
+
+            <TextView
+                android:text="Mauvaise\nréponse"
+                android:textAlignment="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:textColor="@android:color/black" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Swipe à droite -->
+    <TextView
+        android:id="@+id/swipeRight"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Swipe à Droite"
+        android:textSize="20sp"
+        android:fontFamily="@font/bauhaus"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/scoreContainer"
+        app:layout_constraintStart_toStartOf="@id/tvTitle"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/swipeRightParagraph"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="une question sur le nom de l’amiibo."
+        android:textSize="16sp"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@id/swipeRight"
+        app:layout_constraintStart_toStartOf="@id/tvTitle"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Swipe à gauche -->
+    <TextView
+        android:id="@+id/swipeLeft"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Swipe à Gauche"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:fontFamily="@font/bauhaus"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/swipeRightParagraph"
+        app:layout_constraintStart_toStartOf="@id/tvTitle"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/swipeLeftParagraph"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="une question sur la gameserie."
+        android:textSize="16sp"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@id/swipeLeft"
+        app:layout_constraintStart_toStartOf="@id/tvTitle"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+    <!-- Bouton "J'ai compris" -->
+    <Button
+        android:id="@+id/btnUnderstood"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="J'ai compris les règles"
+        android:textColor="@android:color/white"
+        android:backgroundTint="#E30613"
+        android:layout_marginTop="40dp"
+        android:textSize="18dp"
+        android:fontFamily="@font/bauhaus"
+        android:paddingVertical="12dp"
+        android:paddingHorizontal="16dp"
+        app:cornerRadius="12dp"
+        app:layout_constraintTop_toBottomOf="@id/swipeLeftParagraph"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Footer -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:id="@+id/footerIconLeft"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/bx_arrow_back"
+            android:contentDescription="Icône gauche"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="24dp"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Texte centré -->
+        <TextView
+            android:id="@+id/footerText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tous droits réservés - Gaël 2025"
+            android:textSize="12sp"
+            android:paddingBottom="16dp"
+            android:textColor="@android:color/darker_gray"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Icône droite -->
+        <ImageView
+            android:id="@+id/footerIconRight"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/music"
+            android:contentDescription="Icône droite"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="16dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Amiibo</string>
+    <string name="entrez_un_nom_pr_nom" />
+    <string name="valider" />
 </resources>

@@ -6,4 +6,13 @@
     </style>
 
     <style name="Theme.Amiibo" parent="Base.Theme.Amiibo" />
+
+    <style name="Theme.Amiibo.Splash" parent="Theme.SplashScreen">
+        <!-- Logo affiché au lancement -->
+        <item name="windowSplashScreenAnimatedIcon">@mipmap/logo_amiibo_foreground</item>
+        <item name="windowSplashScreenBackground">@color/white</item>
+        <item name="postSplashScreenTheme">@style/Theme.Amiibo</item>
+        <item name="windowSplashScreenAnimationDuration">3000</item>
+    </style>
+
 </resources>
