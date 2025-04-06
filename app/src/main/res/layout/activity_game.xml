@@ -19,6 +19,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:title="Amiibo Quizz" />
+
     <ProgressBar
         android:id="@+id/progressBarQuiz"
         style="?android:attr/progressBarStyleHorizontal"
@@ -28,40 +39,13 @@
         android:max="10"
         android:progressTint="#E30613"
         android:backgroundTint="@android:color/darker_gray"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp" />
 
-
-    <!-- Score -->
-    <TextView
-        android:id="@+id/tvScoreTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Mon score"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        android:textColor="@android:color/black"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="40dp" />
-
-    <TextView
-        android:id="@+id/tvScore"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="0"
-        android:textSize="40sp"
-        android:fontFamily="@font/bauhaus"
-        android:textStyle="bold"
-        android:textColor="@android:color/black"
-        app:layout_constraintTop_toBottomOf="@id/tvScoreTitle"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- Question -->
     <TextView
@@ -75,7 +59,7 @@
         android:textStyle="bold"
         android:textColor="@android:color/black"
         android:layout_marginTop="24dp"
-        app:layout_constraintTop_toBottomOf="@id/tvScore"
+        app:layout_constraintTop_toBottomOf="@id/progressBarQuiz"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -102,8 +86,8 @@
         android:layout_marginTop="40dp"
         android:textSize="16dp"
         android:fontFamily="@font/bauhaus"
-        android:paddingStart="24dp"
-        android:paddingEnd="24dp"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
         android:paddingTop="16dp"
         app:cornerRadius="16dp"
         android:paddingBottom="16dp"
@@ -119,9 +103,9 @@
         android:textColor="@android:color/white"
         android:backgroundTint="#AAD500"
         android:fontFamily="@font/bauhaus"
-        android:paddingStart="24dp"
+        android:paddingStart="8dp"
         android:textSize="16dp"
-        android:paddingEnd="24dp"
+        android:paddingEnd="8dp"
         android:paddingTop="16dp"
         android:paddingBottom="16dp"
         app:cornerRadius="16dp"
@@ -136,10 +120,10 @@
         android:layout_height="wrap_content"
         android:text="Réponse 3"
         android:fontFamily="@font/bauhaus"
-        android:paddingStart="24dp"
+        android:paddingStart="8dp"
         android:textSize="16dp"
         app:cornerRadius="16dp"
-        android:paddingEnd="24dp"
+        android:paddingEnd="8dp"
         android:paddingTop="16dp"
         android:paddingBottom="16dp"
         android:textColor="@android:color/white"
@@ -149,25 +133,27 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Footer -->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+    <ImageView
+        android:id="@+id/footerIconLeft"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/bx_arrow_back"
+        android:contentDescription="Icône gauche"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        android:layout_marginStart="24dp"
+        android:layout_marginBottom="16dp" />
 
-        <ImageView
-            android:id="@+id/footerIconLeft"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/bx_arrow_back"
-            android:contentDescription="Icône gauche"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="24dp"
-            android:layout_marginBottom="16dp" />
+    <ImageView
+        android:id="@+id/footerIconRight"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/musicon"
+        android:contentDescription="Icône droite"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="16dp" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

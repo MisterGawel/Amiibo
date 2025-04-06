@@ -67,6 +67,12 @@ class MainActivity : AppCompatActivity() {
         ui.listViewCategories.adapter = adapter
         ui.listViewCategories.choiceMode = ListView.CHOICE_MODE_MULTIPLE
 
+        //* Sélection par défaut aléatoire de 4 catégories de gameseries
+        val randomIndices = allGameseries.indices.shuffled().take(4)
+        randomIndices.forEach { index ->
+            ui.listViewCategories.setItemChecked(index, true)
+        }
+
         ui.btnStartGame.setOnClickListener {
             handleStartGame()
         }

@@ -4,12 +4,12 @@
 
 
     <style name="Theme.Amiibo" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="colorPrimary">#FF018786</item>
-        <item name="colorPrimaryVariant">#FF3700B3</item>
+        <item name="colorPrimary">#E30613</item>
+        <item name="colorPrimaryVariant">@color/white</item>
     </style>
 
     <style name="Theme.Amiibo.Splash" parent="Theme.SplashScreen">
-        <item name="windowSplashScreenAnimatedIcon">@mipmap/logo_amiibo_foreground</item>
+        <item name="windowSplashScreenAnimatedIcon">@mipmap/amiibo_foreground</item>
         <item name="windowSplashScreenBackground">@color/white</item>
         <item name="postSplashScreenTheme">@style/Theme.Amiibo</item>
         <item name="windowSplashScreenAnimationDuration">3000</item>

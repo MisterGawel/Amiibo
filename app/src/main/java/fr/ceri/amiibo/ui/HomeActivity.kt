@@ -1,14 +1,12 @@
 package fr.ceri.amiibo.ui
 
 import android.content.Intent
-import android.media.MediaPlayer
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import fr.ceri.amiibo.R
 import fr.ceri.amiibo.data.api.ApiClient
 import fr.ceri.amiibo.data.realm.GameSeriesRealm
 import fr.ceri.amiibo.data.realm.UserSettingsManager
@@ -19,7 +17,6 @@ import kotlinx.coroutines.*
 class HomeActivity : AppCompatActivity() {
 
     private lateinit var ui: ActivityHomeBinding
-    private var mediaPlayer: MediaPlayer? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -35,7 +32,6 @@ class HomeActivity : AppCompatActivity() {
 
         //* Récupération de la musique et du meilleur score
         CoroutineScope(Dispatchers.Main).launch {
-            setupMusicToggle()
             setupBestScore()
         }
 
@@ -92,22 +88,6 @@ class HomeActivity : AppCompatActivity() {
         ui.footerIconLeft.setOnClickListener {
             finish()
         }
-
-        ui.footerIconRight.setOnClickListener {
-            toggleMusic()
-        }
-    }
-
-    //* Configuration de la musique
-    private suspend fun setupMusicToggle() {
-        val isMusicEnabled = UserSettingsManager.isMusicEnabled()
-        ui.footerIconRight.setImageResource(if (isMusicEnabled) R.drawable.musicon else R.drawable.musicoff)
-
-        if (isMusicEnabled) {
-            mediaPlayer = MediaPlayer.create(this, R.raw.background_music)
-            mediaPlayer?.isLooping = true
-            mediaPlayer?.start()
-        }
     }
 
     //* Configuration du meilleur score
@@ -119,8 +99,8 @@ class HomeActivity : AppCompatActivity() {
     //* Choix du mode de jeu
     private fun modeChoices(){
         CoroutineScope(Dispatchers.Main).launch {
-            val modes = arrayOf("Facile (10 questions)", "Moyen (20 questions)", "Difficile (30 questions)")
-            val values = arrayOf(10, 20, 30)
+            val modes = arrayOf("Facile (5 questions)", "Moyen (10 questions)", "Difficile (15 questions)")
+            val values = arrayOf(5, 10, 15)
             val current = UserSettingsManager.getQuestionCount()
             val selectedIndex = values.indexOf(current)
 
@@ -138,33 +118,6 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
-    //* Gestion de la musique
-    private fun toggleMusic(){
-        CoroutineScope(Dispatchers.Main).launch {
-            val current = UserSettingsManager.isMusicEnabled()
-            UserSettingsManager.setMusicEnabled(!current)
-
-            val newState = !current
-            ui.footerIconRight.setImageResource(if (newState) R.drawable.musicon else R.drawable.musicoff)
-
-            if (newState) {
-                if (mediaPlayer == null) {
-                    mediaPlayer = MediaPlayer.create(this@HomeActivity, R.raw.background_music)
-                    mediaPlayer?.isLooping = true
-                }
-                mediaPlayer?.start()
-            } else {
-                mediaPlayer?.pause()
-            }
-
-            Toast.makeText(
-                this@HomeActivity,
-                if (newState) "Musique activée" else "Musique coupée",
-                Toast.LENGTH_SHORT
-            ).show()
-        }
-    }
-
     private suspend fun showLoadingError(message: String) {
         withContext(Dispatchers.Main) {
             Toast.makeText(this@HomeActivity, message, Toast.LENGTH_LONG).show()
@@ -172,9 +125,5 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        mediaPlayer?.release()
-        mediaPlayer = null
-    }
+
 }

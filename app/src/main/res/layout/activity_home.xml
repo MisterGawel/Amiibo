@@ -137,12 +137,13 @@
         android:id="@+id/footerIconLeft"
         android:layout_width="24dp"
         android:layout_height="24dp"
-        android:src="@drawable/bx_arrow_back"
+        android:src="@drawable/exit"
         android:contentDescription="Icône gauche"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="24dp"
-        android:layout_marginBottom="16dp" />
+        android:layout_marginBottom="16dp"
+        android:tint="@color/black" />
 
     <!-- Texte centré -->
     <TextView
@@ -158,17 +159,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginBottom="8dp" />
 
-    <!-- Icône droite -->
-    <ImageView
-        android:id="@+id/footerIconRight"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:src="@drawable/music"
-        android:contentDescription="Icône droite"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="16dp" />
+
 
 
 
