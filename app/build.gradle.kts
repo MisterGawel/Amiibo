@@ -1,7 +1,10 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id("org.jetbrains.kotlin.kapt")
 }
+
+apply(plugin = "realm-android")
 
 android {
     namespace = "fr.ceri.amiibo"
@@ -33,6 +36,7 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
+
     buildToolsVersion = "35.0.0"
 
     viewBinding {
@@ -42,7 +46,6 @@ android {
 
 dependencies {
 
-   // implementation(libs.androidx.recyclerview)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
@@ -51,10 +54,13 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    //SplashScreen
     implementation("androidx.core:core-splashscreen:1.0.1")
+
+    //Lottie
     implementation ("com.airbnb.android:lottie:6.1.0")
 
-    //WEB SERVICE ...
     //Retrofit
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
@@ -63,10 +69,6 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
 
-    //implementation(libs.converter.moshi)
-    //implementation(libs.androidx.lifecycle.runtime.ktx)
-
-    //androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7")
 
     implementation("com.github.bumptech.glide:glide:3.7.0")

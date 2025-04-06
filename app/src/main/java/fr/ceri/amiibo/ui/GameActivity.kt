@@ -1,37 +1,51 @@
 package fr.ceri.amiibo.ui
 
+import android.animation.ObjectAnimator
+import android.content.Intent
 import android.os.Bundle
+import android.text.Html
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
+import fr.ceri.amiibo.data.realm.AmiiboRealm
+import fr.ceri.amiibo.data.realm.UserSettingsManager
 import fr.ceri.amiibo.databinding.ActivityGameBinding
-import fr.ceri.amiibo.data.model.Amiibo
-import fr.ceri.amiibo.shared.SharedAmiiboList
+import fr.ceri.amiibo.utils.OnSwipeTouchListener
+import io.realm.Realm
+import kotlinx.coroutines.*
 import kotlin.random.Random
-import android.content.Intent
-import android.animation.ObjectAnimator
 
 class GameActivity : AppCompatActivity() {
 
     private lateinit var ui: ActivityGameBinding
     private var score = 0
-    private var currentAmiibo: Amiibo? = null
-    private val askedAmiibos = mutableSetOf<Amiibo>()
+    private var currentAmiibo: AmiiboRealm? = null
+    private val askedAmiibos = mutableSetOf<String>()
     private var correctAnswerIndex = 0
     private var currentQuestionType = QuestionType.NAME
     private var questionCount = 0
-    private val maxQuestions = 10
+    private var maxQuestions: Int = 10
 
     enum class QuestionType { NAME, SERIES }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        //* Initialisation de l'UI
         super.onCreate(savedInstanceState)
         ui = ActivityGameBinding.inflate(layoutInflater)
         setContentView(ui.root)
+        ui.root.setOnTouchListener(OnSwipeTouchListener(this, this))
 
         setupListeners()
         updateScore()
-        loadNextQuestion()
+
+        //* Initialisation des questions
+        CoroutineScope(Dispatchers.Main).launch {
+            maxQuestions = UserSettingsManager.getQuestionCount()
+            ui.progressBarQuiz.max = maxQuestions
+            ui.progressBarQuiz.progress = 0
+            loadNextQuestion()
+        }
     }
 
     private fun setupListeners() {
@@ -58,7 +72,8 @@ class GameActivity : AppCompatActivity() {
     }
 
     private fun loadNextQuestion() {
-        val allAmiibos = SharedAmiiboList.list
+        val realm = Realm.getDefaultInstance()
+        val allAmiibos = realm.where(AmiiboRealm::class.java).findAll()
 
         if (allAmiibos.isEmpty()) {
             Toast.makeText(this, "Aucun amiibo disponible.", Toast.LENGTH_LONG).show()
@@ -66,48 +81,42 @@ class GameActivity : AppCompatActivity() {
             return
         }
 
-        // Si tous les amiibos ont été posés, on recommence
         if (askedAmiibos.size == allAmiibos.size) {
             askedAmiibos.clear()
         }
 
-        val amiibo = allAmiibos
-            .filterNot { askedAmiibos.contains(it) }
-            .randomOrNull()
+        val available = allAmiibos.filterNot { askedAmiibos.contains(it.id) }
+        val amiibo = available.randomOrNull()
 
         if (amiibo == null) {
-            Toast.makeText(this, "Plus de questions disponibles", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Plus de questions disponibles.", Toast.LENGTH_SHORT).show()
             return
         }
 
         currentAmiibo = amiibo
-        askedAmiibos.add(amiibo)
+        askedAmiibos.add(amiibo.id)
+
+        if (questionCount >= maxQuestions) {
+            endGame()
+            return
+        }
 
         questionCount++
         ObjectAnimator.ofInt(ui.progressBarQuiz, "progress", ui.progressBarQuiz.progress, questionCount)
             .setDuration(300)
             .start()
-        if (questionCount > maxQuestions) {
-            endGame()
-            return
-        }
 
-        // Charger image
-        Glide.with(this)
-            .load(amiibo.image)
-            .into(ui.imgAmiibo)
+        Glide.with(this).load(amiibo.image).into(ui.imgAmiibo)
 
-        // Tirer le type de question aléatoirement
         currentQuestionType = if (Random.nextBoolean()) QuestionType.NAME else QuestionType.SERIES
 
-        val questionText = when (currentQuestionType) {
-            QuestionType.NAME -> "Quel est le nom de cet amiibo ?"
-            QuestionType.SERIES -> "De quelle license vient cet amiibo ?"
+        val questionHtml = when (currentQuestionType) {
+            QuestionType.NAME -> "<font color='#000000'>Quel est le nom de </font><font color='#C8007D'>cet amiibo</font>"
+            QuestionType.SERIES -> "<font color='#000000'>De quelle licence vient </font><font color='#C8007D'>cet amiibo</font>"
         }
 
-        ui.tvQuestion.text = questionText
+        ui.tvQuestion.text = Html.fromHtml(questionHtml, Html.FROM_HTML_MODE_LEGACY)
 
-        // Générer les réponses
         val choices = generateChoices(amiibo, allAmiibos, currentQuestionType)
         correctAnswerIndex = choices.indexOf(
             when (currentQuestionType) {
@@ -116,15 +125,14 @@ class GameActivity : AppCompatActivity() {
             }
         )
 
-        // Remplir les boutons
         ui.btnAnswer1.text = choices[0]
         ui.btnAnswer2.text = choices[1]
         ui.btnAnswer3.text = choices[2]
     }
 
     private fun generateChoices(
-        correct: Amiibo,
-        all: List<Amiibo>,
+        correct: AmiiboRealm,
+        all: List<AmiiboRealm>,
         type: QuestionType
     ): List<String> {
         val correctValue = when (type) {
@@ -139,8 +147,7 @@ class GameActivity : AppCompatActivity() {
             }
         }.distinct().filterNot { it == correctValue }.shuffled()
 
-        val choices = mutableListOf<String>()
-        choices.add(correctValue)
+        val choices = mutableListOf(correctValue)
         choices.addAll(allValues.take(2))
 
         return choices.shuffled()
@@ -151,6 +158,22 @@ class GameActivity : AppCompatActivity() {
         intent.putExtra("score", score)
         startActivity(intent)
         finish()
+    }
+
+    //* Gestion des gestes (swipe à gauche/droite)
+    fun switchToNameQuestion() {
+        score -= 1
+        Toast.makeText(this, "Question passée (nom) : -1", Toast.LENGTH_SHORT).show()
+        currentQuestionType = QuestionType.NAME
+        updateScore()
+        loadNextQuestion()
+    }
+    fun switchToGameSeriesQuestion() {
+        score -= 1
+        Toast.makeText(this, "Question passée (licence) : -1", Toast.LENGTH_SHORT).show()
+        currentQuestionType = QuestionType.SERIES
+        updateScore()
+        loadNextQuestion()
     }
 
 }

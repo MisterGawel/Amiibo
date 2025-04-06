@@ -13,8 +13,10 @@ class RuleActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         ui = ActivityRuleBinding.inflate(layoutInflater)
         setContentView(ui.root)
-        val styledText = "<font color='#C8007D'>Les règles </font><font color='#000000'><b>du quizz</b></font>"
-        ui.tvTitle.text = android.text.Html.fromHtml(styledText, Html.FROM_HTML_MODE_LEGACY)
+
+        //* Styles des textes
+        ui.tvTitle.text = android.text.Html.fromHtml(
+            "<font color='#C8007D'>Les règles </font><font color='#000000'><b>du quizz</b></font>", Html.FROM_HTML_MODE_LEGACY)
         ui.swipeRight.text = android.text.Html.fromHtml(
             "<font color='#000000'>Swipe à </font><font color='#C8007D'>Droite</font>", Html.FROM_HTML_MODE_LEGACY
         )

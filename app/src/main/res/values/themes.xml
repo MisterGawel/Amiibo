@@ -1,14 +1,14 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
     <style name="Base.Theme.Amiibo" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
-    <style name="Theme.Amiibo" parent="Base.Theme.Amiibo" />
+
+    <style name="Theme.Amiibo" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">#FF018786</item>
+        <item name="colorPrimaryVariant">#FF3700B3</item>
+    </style>
 
     <style name="Theme.Amiibo.Splash" parent="Theme.SplashScreen">
-        <!-- Logo affiché au lancement -->
         <item name="windowSplashScreenAnimatedIcon">@mipmap/logo_amiibo_foreground</item>
         <item name="windowSplashScreenBackground">@color/white</item>
         <item name="postSplashScreenTheme">@style/Theme.Amiibo</item>

@@ -11,7 +11,7 @@
         android:layout_height="0dp"
         android:src="@drawable/bg_amiibo"
         android:scaleType="centerCrop"
-        android:alpha="0.5"
+        android:alpha="0.25"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -224,31 +224,6 @@
             android:layout_marginStart="24dp"
             android:layout_marginBottom="16dp" />
 
-        <!-- Texte centré -->
-        <TextView
-            android:id="@+id/footerText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Tous droits réservés - Gaël 2025"
-            android:textSize="12sp"
-            android:paddingBottom="16dp"
-            android:textColor="@android:color/darker_gray"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginBottom="8dp" />
-
-        <!-- Icône droite -->
-        <ImageView
-            android:id="@+id/footerIconRight"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/music"
-            android:contentDescription="Icône droite"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="24dp"
-            android:layout_marginBottom="16dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

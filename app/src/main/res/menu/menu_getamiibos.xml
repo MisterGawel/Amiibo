@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- Item pour sélectionner / désélectionner tout -->
+    <item
+        android:id="@+id/action_select_all"
+        android:title="Tout sélectionner"
+        android:icon="@drawable/uncheckbox"
+        app:showAsAction="always" />
+
+    <!-- Item pour valider la sélection -->
+    <item
+        android:id="@+id/action_validate"
+        android:title="Valider"
+        android:icon="@drawable/play"
+        app:showAsAction="always" />
+</menu>

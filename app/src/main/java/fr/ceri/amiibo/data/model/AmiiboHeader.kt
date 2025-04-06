@@ -1,5 +1,5 @@
 package fr.ceri.amiibo.data.model
 
 data class AmiiboHeader(
-    val amiibo: List<AmiiboGame>
+    val amiibo: MutableList<AmiiboGame>
 )

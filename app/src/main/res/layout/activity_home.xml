@@ -24,7 +24,7 @@
     <!-- Logo Amiibo -->
     <ImageView
         android:id="@+id/logoAmiibo"
-        android:layout_width="wrap_content"
+        android:layout_width="160dp"
         android:layout_height="wrap_content"
         android:src="@drawable/logo_amiibo"
         android:paddingTop="16dp"
@@ -95,10 +95,10 @@
             android:layout_marginBottom="16dp" />
 
         <Button
-            android:id="@+id/btnLanguages"
+            android:id="@+id/btnMode"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:text="Langues"
+            android:text="Mode"
             android:textStyle="bold"
             android:fontFamily="@font/bauhaus"
             android:textColor="@android:color/white"
@@ -151,7 +151,7 @@
         android:layout_height="wrap_content"
         android:text="Tous droits réservés - Gaël 2025"
         android:textSize="12sp"
-        android:paddingBottom="16dp"
+        android:paddingBottom="14dp"
         android:textColor="@android:color/darker_gray"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
