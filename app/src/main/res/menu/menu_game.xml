@@ -2,17 +2,15 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!-- Item qui affiche le score avec une couleur dynamique -->
     <item
         android:id="@+id/item_score"
         android:title="Score: 0"
         android:titleTextColor="@android:color/black"
         app:showAsAction="always" />
 
-    <!-- Item pour réinitialiser le score -->
     <item
         android:id="@+id/item_reset"
         android:title="Reset"
-        android:icon="@drawable/ad"
+        android:icon="@drawable/restart"
         app:showAsAction="always" />
 </menu>

@@ -40,6 +40,7 @@ class GameActivity : AppCompatActivity() {
         ui = ActivityGameBinding.inflate(layoutInflater)
         setContentView(ui.root)
         setSupportActionBar(ui.toolbar)
+        supportActionBar?.title = ""
         ui.root.setOnTouchListener(OnSwipeTouchListener(this, this))
 
         setupListeners()
@@ -127,6 +128,7 @@ class GameActivity : AppCompatActivity() {
         if (used != null) askedAmiibos.add(used)
 
         questionCount++
+        updateToolbarTitle()
         ObjectAnimator.ofInt(ui.progressBarQuiz, "progress", ui.progressBarQuiz.progress, questionCount)
             .setDuration(300)
             .start()
@@ -189,21 +191,27 @@ class GameActivity : AppCompatActivity() {
 
     private fun updateScoreMenuItem(menu: Menu?) {
         val scoreItem = menu?.findItem(R.id.item_score)
-        scoreItem?.title = "Score: $score"
 
+        // Score coloré (ex: Score: 6 en vert)
+        val scoreText = "Score: $score"
+        val spannable = android.text.SpannableString(scoreText)
         val color = when {
             score > 0 -> android.graphics.Color.GREEN
             score == 0 -> android.graphics.Color.BLACK
             else -> android.graphics.Color.RED
         }
 
-        val spannable = android.text.SpannableString(scoreItem?.title ?: "")
         spannable.setSpan(
             android.text.style.ForegroundColorSpan(color),
-            0, spannable.length,
+            0, scoreText.length,
             android.text.Spannable.SPAN_INCLUSIVE_INCLUSIVE
         )
+
         scoreItem?.title = spannable
+    }
+
+    private fun updateToolbarTitle() {
+        supportActionBar?.title = "Question $questionCount/$maxQuestions"
     }
 
     override fun onPause() {

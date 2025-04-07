@@ -40,6 +40,7 @@ class MainActivity : AppCompatActivity() {
         ui = ActivityMainBinding.inflate(layoutInflater)
         setContentView(ui.root)
         setSupportActionBar(ui.toolbar)
+        supportActionBar?.title = ""
         ui.title.text = Html.fromHtml(
             "<font color='#000000'>Choisis tes </font><font color='#C8007D'>catégories</font>",
             Html.FROM_HTML_MODE_LEGACY
