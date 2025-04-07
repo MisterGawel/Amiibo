@@ -23,12 +23,11 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:title="Amiibo Quizz" />
+        />
 
     <ProgressBar
         android:id="@+id/progressBarQuiz"
@@ -53,7 +52,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/bauhaus"
-        android:text="De quel licence est tiré cet amiibo"
+        android:text="@string/de_quel_licence_est_tir_cet_amiibo"
         android:textSize="20sp"
         android:textAlignment="center"
         android:textStyle="bold"

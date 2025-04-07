@@ -40,15 +40,14 @@ class GameOverActivity : AppCompatActivity() {
 
     private fun setupListeners() {
         ui.btnReplay.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-            startActivity(intent)
             finish()
         }
 
         ui.btnHome.setOnClickListener {
             val intent = Intent(this, HomeActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+
+            //* Ajout de flags pour éviter de revenir à l'écran de jeu (nettoyage de la pile d'activités)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
             startActivity(intent)
             finish()
         }

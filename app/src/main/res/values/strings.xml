@@ -2,4 +2,52 @@
     <string name="app_name">Amiibo</string>
     <string name="entrez_un_nom_pr_nom" />
     <string name="valider" />
+    <string name="choose_categories">Choisis tes %1$s</string>
+    <string name="category_word">catégories</string>
+    <string name="meilleur_score">Meilleur score</string>
+    <string name="jouer">Jouer</string>
+    <string name="mode">Mode</string>
+    <string name="r_gles">Règles</string>
+    <string name="tous_droits_r_serv_s_ga_l_2025">Tous droits réservés - Gaël 2025</string>
+    <string name="fin_de_la_partie">Fin de la partie !</string>
+    <string name="ton_score">Ton score :</string>
+    <string name="rejouer">Rejouer</string>
+    <string name="retour_l_accueil">Retour à l\'accueil</string>
+    <string name="de_quel_licence_est_tir_cet_amiibo">De quel licence est tiré cet amiibo</string>
+    <string name="les_r_gles_du_quizz">Les règles du quizz</string>
+    <string name="bonne_nr_ponse">Bonne\nréponse</string>
+    <string name="passer_nla_question">Passer\nla question</string>
+    <string name="mauvaise_nr_ponse">Mauvaise\nréponse</string>
+    <string name="swipe_droite">Swipe à Droite</string>
+    <string name="une_question_sur_le_nom_de_l_amiibo">une question sur le nom de l’amiibo.</string>
+    <string name="swipe_gauche">Swipe à Gauche</string>
+    <string name="une_question_sur_la_gameserie">une question sur la gameserie.</string>
+    <string name="j_ai_compris_les_r_gles">J\'ai compris les règles</string>
+    <string name="toast_correct_answer">Bonne réponse ! +2</string>
+    <string name="toast_wrong_answer">Mauvaise réponse ! -2</string>
+    <string name="toast_no_more_questions">Plus de questions disponibles</string>
+    <string name="toast_skip_name_question">Question passée (nom) : -1</string>
+    <string name="toast_skip_series_question">Question passée (licence) : -1</string>
+    <string name="rules_title_part1">Les règles</string>
+    <string name="rules_title_part2">du quizz</string>
+    <string name="swipe_right_prefix">Swipe à</string>
+    <string name="swipe_right_colored">Droite</string>
+    <string name="swipe_left_prefix">Swipe à</string>
+    <string name="swipe_left_colored">Gauche</string>
+
+
+    <string name="dialog_exit_title">Quitter le jeu</string>
+    <string name="dialog_exit_message">Êtes-vous sûr de vouloir quitter le jeu ?</string>
+    <string name="dialog_yes">Oui</string>
+    <string name="dialog_no">Non</string>
+
+    <string name="question_name_html">Quel est le nom de <font color='#C8007D'>%1$s</font> ?</string>
+    <string name="question_series_html">De quelle licence vient <font color='#C8007D'>%1$s</font> ?</string>
+    <string name="cet_amiibo">cet amiibo</string>
+
+
+    <string name="score_prefix">Score: %1$d</string>
+    <string name="toolbar_question_counter">Question %1$d/%2$d</string>
+    <string name="d_marrer_la_partie">Démarrer la partie</string>
+
 </resources>

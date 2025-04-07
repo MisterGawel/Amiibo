@@ -2,17 +2,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!-- Item pour sélectionner / désélectionner tout -->
     <item
         android:id="@+id/action_select_all"
         android:title="Tout sélectionner"
         android:icon="@drawable/uncheckbox"
+        app:iconTint="@color/black"
         app:showAsAction="always" />
 
-    <!-- Item pour valider la sélection -->
     <item
         android:id="@+id/action_validate"
         android:title="Valider"
+        app:iconTint="@color/black"
         android:icon="@drawable/play"
         app:showAsAction="always" />
 </menu>

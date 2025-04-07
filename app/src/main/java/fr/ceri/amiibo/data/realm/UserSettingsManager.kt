@@ -5,6 +5,13 @@ import io.realm.kotlin.where
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
+/**
+ * Gestionnaire des paramètres utilisateur dans la base de données Realm.
+ *
+ * @property bestScore Le meilleur score de l'utilisateur.
+ * @property isMusicEnabled Indique si la musique est activée.
+ * @property questionCount Le nombre de questions à poser.
+ */
 object UserSettingsManager {
 
     //* Instance de UserSettingsManager

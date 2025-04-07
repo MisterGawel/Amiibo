@@ -37,7 +37,7 @@
             android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Les règles du quizz"
+            android:text="@string/les_r_gles_du_quizz"
             android:fontFamily="@font/bauhaus"
             android:textSize="28sp"
             android:textStyle="bold"
@@ -73,7 +73,7 @@
                     android:layout_marginBottom="4dp" />
 
                 <TextView
-                    android:text="Bonne\nréponse"
+                    android:text="@string/bonne_nr_ponse"
                     android:textAlignment="center"
                     android:textSize="12sp"
                     android:textColor="@android:color/black"
@@ -102,7 +102,7 @@
                     android:layout_marginBottom="4dp" />
 
                 <TextView
-                    android:text="Passer\nla question"
+                    android:text="@string/passer_nla_question"
                     android:textAlignment="center"
                     android:textSize="12sp"
                     android:textColor="@android:color/black"
@@ -131,7 +131,7 @@
                     android:layout_marginBottom="4dp" />
 
                 <TextView
-                    android:text="Mauvaise\nréponse"
+                    android:text="@string/mauvaise_nr_ponse"
                     android:textAlignment="center"
                     android:textSize="12sp"
                     android:textColor="@android:color/black"
@@ -145,7 +145,7 @@
             android:id="@+id/swipeRight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Swipe à Droite"
+            android:text="@string/swipe_droite"
             android:textSize="20sp"
             android:fontFamily="@font/bauhaus"
             android:textColor="@android:color/black"
@@ -156,7 +156,7 @@
             android:id="@+id/swipeRightParagraph"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="une question sur le nom de l’amiibo."
+            android:text="@string/une_question_sur_le_nom_de_l_amiibo"
             android:textSize="16sp"
             android:textColor="@android:color/black"
             android:layout_marginTop="8dp" />
@@ -165,7 +165,7 @@
             android:id="@+id/swipeLeft"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Swipe à Gauche"
+            android:text="@string/swipe_gauche"
             android:textSize="20sp"
             android:fontFamily="@font/bauhaus"
             android:textColor="@android:color/black"
@@ -176,7 +176,7 @@
             android:id="@+id/swipeLeftParagraph"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="une question sur la gameserie."
+            android:text="@string/une_question_sur_la_gameserie"
             android:textSize="16sp"
             android:textColor="@android:color/black"
             android:layout_marginTop="8dp" />
@@ -186,7 +186,7 @@
             android:id="@+id/btnUnderstood"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="J'ai compris les règles"
+            android:text="@string/j_ai_compris_les_r_gles"
             android:textColor="@android:color/white"
             android:backgroundTint="#E30613"
             android:textSize="18sp"

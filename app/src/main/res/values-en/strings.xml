@@ -1,0 +1,49 @@
+<resources>
+    <string name="app_name">Amiibo</string>
+    <string name="entrez_un_nom_pr_nom" />
+    <string name="valider" />
+    <string name="choose_categories">Choose your %1$s</string>
+    <string name="category_word">categories</string>
+    <string name="meilleur_score">Best score</string>
+    <string name="jouer">Play</string>
+    <string name="mode">Mode</string>
+    <string name="r_gles">Rules</string>
+    <string name="tous_droits_r_serv_s_ga_l_2025">All rights reserved - Gaël 2025</string>
+    <string name="fin_de_la_partie">End of the game!</string>
+    <string name="ton_score">Your score:</string>
+    <string name="rejouer">Play again</string>
+    <string name="retour_l_accueil">Back to home</string>
+    <string name="de_quel_licence_est_tir_cet_amiibo">From which license is this Amiibo?</string>
+    <string name="les_r_gles_du_quizz">Quiz rules</string>
+    <string name="bonne_nr_ponse">Correct\nanswer</string>
+    <string name="passer_nla_question">Skip\nthe question</string>
+    <string name="mauvaise_nr_ponse">Wrong\nanswer</string>
+    <string name="swipe_droite">Swipe Right</string>
+    <string name="une_question_sur_le_nom_de_l_amiibo">a question about the Amiibo’s name.</string>
+    <string name="swipe_gauche">Swipe Left</string>
+    <string name="une_question_sur_la_gameserie">a question about the gameseries.</string>
+    <string name="j_ai_compris_les_r_gles">I understand the rules</string>
+    <string name="toast_correct_answer">Correct answer! +2</string>
+    <string name="toast_wrong_answer">Wrong answer! -2</string>
+    <string name="toast_no_more_questions">No more questions available</string>
+    <string name="toast_skip_name_question">Skipped question (name): -1</string>
+    <string name="toast_skip_series_question">Skipped question (series): -1</string>
+    <string name="dialog_exit_title">Exit Game</string>
+    <string name="dialog_exit_message">Are you sure you want to exit the game?</string>
+    <string name="dialog_yes">Yes</string>
+    <string name="dialog_no">No</string>
+    <string name="question_name_html">What is the name of <font color='#C8007D'>%1$s</font>?</string>
+    <string name="question_series_html">Which game series does <font color='#C8007D'>%1$s</font> belong to?</string>
+    <string name="cet_amiibo">this amiibo</string>
+    <string name="rules_title_part1">The</string>
+    <string name="rules_title_part2">quiz rules</string>
+    <string name="swipe_right_prefix">Swipe to the</string>
+    <string name="swipe_right_colored">right</string>
+    <string name="swipe_left_prefix">Swipe to the</string>
+    <string name="swipe_left_colored">left</string>
+
+    <string name="score_prefix">Score: %1$d</string>
+    <string name="toolbar_question_counter">Question %1$d/%2$d</string>
+    <string name="d_marrer_la_partie">Start the game</string>
+
+</resources>

@@ -23,10 +23,8 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        app:title="Amiibo"
         app:titleTextColor="@android:color/white"
         app:layout_constraintTop_toTopOf="parent"/>
 
@@ -73,9 +71,11 @@
             android:layout_weight="1"
             android:background="@android:color/transparent"
             android:choiceMode="multipleChoice"
+            app:iconTint="@color/black"
             android:divider="@android:color/transparent"
             android:dividerHeight="8dp"
-            android:paddingVertical="20dp" />
+            android:paddingVertical="20dp"
+             />
 
         <!-- Trait bas -->
         <View
@@ -103,7 +103,7 @@
         android:id="@+id/btnStartGame"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Démarrer la partie"
+        android:text="@string/d_marrer_la_partie"
         android:textColor="@android:color/white"
         android:backgroundTint="#E30613"
         android:textSize="18sp"

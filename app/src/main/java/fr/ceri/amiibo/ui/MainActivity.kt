@@ -1,8 +1,12 @@
 package fr.ceri.amiibo.ui
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.text.Html
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.ForegroundColorSpan
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
@@ -17,6 +21,7 @@ import fr.ceri.amiibo.data.model.Amiibo
 import fr.ceri.amiibo.data.model.AmiiboGame
 import fr.ceri.amiibo.data.realm.AmiiboRealm
 import fr.ceri.amiibo.data.realm.GameSeriesRealm
+import fr.ceri.amiibo.data.realm.UserSettingsManager
 import fr.ceri.amiibo.databinding.ActivityMainBinding
 import io.realm.Realm
 import kotlinx.coroutines.CoroutineScope
@@ -41,10 +46,24 @@ class MainActivity : AppCompatActivity() {
         setContentView(ui.root)
         setSupportActionBar(ui.toolbar)
         supportActionBar?.title = ""
-        ui.title.text = Html.fromHtml(
-            "<font color='#000000'>Choisis tes </font><font color='#C8007D'>catégories</font>",
-            Html.FROM_HTML_MODE_LEGACY
+
+        //* Stylisation du titre "Choisir les catégories"
+        val highlighted = getString(R.string.category_word)
+        val rawFormatted = getString(R.string.choose_categories, highlighted)
+        val spannable = SpannableString(rawFormatted)
+
+        val start = rawFormatted.indexOf(highlighted)
+        val end = start + highlighted.length
+
+        spannable.setSpan(
+            ForegroundColorSpan(Color.parseColor("#C8007D")),
+            start,
+            end,
+            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
         )
+
+        ui.title.text = spannable
+
 
         //* Initialisation de Realm
         realm = Realm.getDefaultInstance()
@@ -123,6 +142,24 @@ class MainActivity : AppCompatActivity() {
                 }
             }
 
+            val minQuestions = UserSettingsManager.getQuestionCount()
+
+            if (allAmiibos.size < minQuestions) {
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(
+                        this@MainActivity,
+                        "Pas assez d'amiibos (${allAmiibos.size}) pour ${minQuestions} questions !",
+                        Toast.LENGTH_LONG
+                    ).show()
+                    ui.loaderLottie.visibility = View.GONE
+                    ui.container.alpha = 1f
+                    ui.btnStartGame.isEnabled = true
+                    ui.listViewCategories.isEnabled = true
+                    ui.footerIconLeft.isEnabled = true
+                }
+                return@launch
+            }
+
             Realm.getDefaultInstance().use { localRealm ->
                 localRealm.executeTransaction { transactionRealm ->
                     transactionRealm.delete(AmiiboRealm::class.java)
@@ -145,7 +182,11 @@ class MainActivity : AppCompatActivity() {
             }
 
             withContext(Dispatchers.Main) {
-                Toast.makeText(this@MainActivity, "Chargement terminé, bon jeu !", Toast.LENGTH_SHORT).show()
+                ui.loaderLottie.visibility = View.GONE
+                ui.container.alpha = 1f
+                ui.btnStartGame.isEnabled = true
+                ui.listViewCategories.isEnabled = true
+                ui.footerIconLeft.isEnabled = true
                 startActivity(Intent(this@MainActivity, GameActivity::class.java))
             }
         }
