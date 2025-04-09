@@ -35,9 +35,7 @@ class HomeActivity : AppCompatActivity() {
         setContentView(ui.root)
 
         // Affiche le meilleur score depuis les préférences utilisateur
-        CoroutineScope(Dispatchers.Main).launch {
-            setupBestScore()
-        }
+        setupBestScore()
 
         setupButtons()
 
@@ -114,9 +112,12 @@ class HomeActivity : AppCompatActivity() {
     /**
      * Récupère et affiche le meilleur score enregistré.
      */
-    private suspend fun setupBestScore() {
-        val bestScore = UserSettingsManager.getBestScore()
-        ui.tvScore.text = bestScore.toString()
+    private fun setupBestScore() {
+        CoroutineScope(Dispatchers.Main).launch {
+            val bestScore = UserSettingsManager.getBestScore()
+            Log.d("HomeActivity", "Meilleur score : $bestScore")
+            ui.tvScore.text = bestScore.toString()
+        }
     }
 
     /**
@@ -154,5 +155,13 @@ class HomeActivity : AppCompatActivity() {
             Toast.makeText(this@HomeActivity, message, Toast.LENGTH_LONG).show()
             ui.btnPlay.isEnabled = false
         }
+    }
+
+    /**
+     * Gère le retour de l'activité : remet à jour le meilleur score.
+     */
+    override fun onResume() {
+        super.onResume()
+        setupBestScore()
     }
 }

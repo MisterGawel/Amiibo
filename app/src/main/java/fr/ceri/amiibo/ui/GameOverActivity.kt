@@ -2,6 +2,7 @@ package fr.ceri.amiibo.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import fr.ceri.amiibo.utils.UserSettingsManager
 import fr.ceri.amiibo.databinding.ActivityGameoverBinding
@@ -28,12 +29,14 @@ class GameOverActivity : AppCompatActivity() {
 
         // Récupération du score transmis depuis GameActivity
         val score = intent.getIntExtra("score", 0)
+        Log.d("GameOverActivity", "Score final : $score")
 
         // Lancement d'une coroutine pour comparaison/stockage du meilleur score
         CoroutineScope(Dispatchers.IO).launch {
             val bestScore = UserSettingsManager.getBestScore()
             if (score > bestScore) {
                 UserSettingsManager.setBestScore(score) // Mise à jour du score si supérieur
+                Log.d("GameOverActivity", "Nouveau meilleur score : $score")
             }
 
             // Mise à jour de l'UI avec le score final
