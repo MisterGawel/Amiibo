@@ -43,10 +43,16 @@ class OnSwipeTouchListener(
             }
         }
 
+        /**
+         * Action déclenchée lors d’un swipe vers la gauche : on passe à la question "série".
+         */
         private fun onSwipeLeft() {
             gameActivity.switchToGameSeriesQuestion()
         }
 
+        /**
+         * Action déclenchée lors d’un swipe vers la droite : on passe à la question "nom".
+         */
         private fun onSwipeRight() {
             gameActivity.switchToNameQuestion()
         }

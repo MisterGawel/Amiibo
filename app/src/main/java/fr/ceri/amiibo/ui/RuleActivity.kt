@@ -1,37 +1,52 @@
 package fr.ceri.amiibo.ui
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import fr.ceri.amiibo.databinding.ActivityRuleBinding
-import android.text.Html
 import fr.ceri.amiibo.R
 
+/**
+ * Activité affichant les règles du jeu à l'utilisateur.
+ * Elle stylise dynamiquement les textes à l'aide de couleurs, et propose un bouton de retour.
+ */
 class RuleActivity : AppCompatActivity() {
 
     private lateinit var ui: ActivityRuleBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // Initialisation du binding
         ui = ActivityRuleBinding.inflate(layoutInflater)
         setContentView(ui.root)
 
-        //* Styles des textes
+        // Application des styles aux titres et textes explicatifs
         styleTitle()
         styleSwipeTexts()
 
+        // Définition des comportements des boutons
         setupListeners()
     }
 
+    /**
+     * Initialise les écouteurs d'événements sur les boutons de l'interface.
+     */
     private fun setupListeners() {
+        // Ferme l'activité quand l'utilisateur clique sur "J'ai compris"
         ui.btnUnderstood.setOnClickListener {
             finish()
         }
+
+        // Ferme aussi l'activité si on clique sur l'icône de retour en bas
         ui.footerIconLeft.setOnClickListener {
             finish()
         }
     }
 
+    /**
+     * Met en forme le titre principal de l'écran en colorant une partie du texte.
+     * Le premier morceau est coloré en rose (#C8007D).
+     */
     private fun styleTitle() {
         val part1 = getString(R.string.rules_title_part1)
         val part2 = getString(R.string.rules_title_part2)
@@ -47,7 +62,13 @@ class RuleActivity : AppCompatActivity() {
         ui.tvTitle.text = spannable
     }
 
+    /**
+     * Met en forme les explications liées aux swipes
+     * - à droite (nom de personnage) avec texte en rose,
+     * - à gauche (série de jeu) avec texte en bleu.
+     */
     private fun styleSwipeTexts() {
+        // Texte de swipe vers la droite
         val rightPrefix = getString(R.string.swipe_right_prefix)
         val rightColor = getString(R.string.swipe_right_colored)
         val rightText = "$rightPrefix $rightColor"
@@ -60,6 +81,7 @@ class RuleActivity : AppCompatActivity() {
         )
         ui.swipeRight.text = spannableRight
 
+        // Texte de swipe vers la gauche
         val leftPrefix = getString(R.string.swipe_left_prefix)
         val leftColor = getString(R.string.swipe_left_colored)
         val leftText = "$leftPrefix $leftColor"
@@ -72,6 +94,4 @@ class RuleActivity : AppCompatActivity() {
         )
         ui.swipeLeft.text = spannableLeft
     }
-
 }
-

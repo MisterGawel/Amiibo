@@ -2,11 +2,13 @@ package fr.ceri.amiibo.data.model
 
 import fr.ceri.amiibo.ui.GameActivity
 
-//* AmiiboQuestion est une question de type "choix multiple" qui contient
-//*cc l'image de l'amiibo, le type de question (nom ou série), les choix possibles et l'index de la bonne réponse
+// Classe de données représentant une question à choix multiples (QCM) utilisée dans le jeu.
+// Elle sert à générer une question basée sur un amiibo
+// Elle contient les éléments nécessaires à l'affichage et à la validation de la réponse.
+
 data class AmiiboQuestion(
-    val imageUrl: String,
-    val questionType: GameActivity.QuestionType,
-    val choices: List<String>,
-    val correctAnswerIndex: Int
+    val imageUrl: String,                      // URL de l'image de l'amiibo à afficher pour la question.
+    val questionType: GameActivity.QuestionType, // Type de question (par exemple : deviner le nom ou la série de l'amiibo).
+    val choices: List<String>,                 // Liste des choix de réponses proposés à l'utilisateur.
+    val correctAnswerIndex: Int                // Index de la bonne réponse dans la liste des choix.
 )
