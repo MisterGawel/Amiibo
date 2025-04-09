@@ -19,7 +19,6 @@ object ApiClient {
             .create()
     }
 
-    // Bypass SSL pour tests uniquement
     private val unsafeTrustManager = object : X509TrustManager {
         override fun checkClientTrusted(chain: Array<out X509Certificate>?, authType: String?) {}
         override fun checkServerTrusted(chain: Array<out X509Certificate>?, authType: String?) {}

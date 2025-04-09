@@ -12,5 +12,5 @@ interface ApiService {
     suspend fun getGameSeries(): Response<AmiiboHeader>
 
     @GET("amiibo")
-    suspend fun getAmiiboByGameSeries(@Query("gameseries") series: String): Response<AmiiboWrapper>
+    suspend fun getAllAmiibos(): Response<AmiiboWrapper>
 }

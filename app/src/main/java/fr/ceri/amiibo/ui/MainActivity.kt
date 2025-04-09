@@ -124,31 +124,32 @@ class MainActivity : AppCompatActivity() {
         ui.footerIconLeft.isEnabled = false
 
         CoroutineScope(Dispatchers.IO).launch {
+            val response = ApiClient.apiService.getAllAmiibos()
 
-            val allAmiibos = mutableListOf<Amiibo>()
-
-            for (game in selectedGameseries) {
-                try {
-                    val response = ApiClient.apiService.getAmiiboByGameSeries(game.name)
-                    if (response.isSuccessful) {
-                        val result = response.body()?.amiibo ?: emptyList()
-                        Log.d("MainActivity", "→ ${game.name} : ${result.size} amiibos")
-                        allAmiibos.addAll(result)
-                    } else {
-                        Log.w("MainActivity", "API échouée pour ${game.name}")
-                    }
-                } catch (e: Exception) {
-                    Log.e("MainActivity", "Erreur API pour ${game.name}", e)
+            if (!response.isSuccessful || response.body() == null) {
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(this@MainActivity, "Erreur API", Toast.LENGTH_SHORT).show()
+                    ui.loaderLottie.visibility = View.GONE
+                    ui.container.alpha = 1f
+                    ui.btnStartGame.isEnabled = true
+                    ui.listViewCategories.isEnabled = true
+                    ui.footerIconLeft.isEnabled = true
                 }
+                return@launch
             }
 
-            val minQuestions = UserSettingsManager.getQuestionCount()
+            val allApiAmiibos = response.body()?.amiibo ?: emptyList()
+            val selectedSeriesNames = selectedGameseries.map { it.name }
+            val filteredAmiibos = allApiAmiibos.filter { it.gameSeries in selectedSeriesNames }
 
-            if (allAmiibos.size < minQuestions) {
+            Log.d("MainActivity", "→ ${filteredAmiibos.size} amiibos filtrés sur ${allApiAmiibos.size} totaux")
+
+            val minQuestions = UserSettingsManager.getQuestionCount()
+            if (filteredAmiibos.size < minQuestions) {
                 withContext(Dispatchers.Main) {
                     Toast.makeText(
                         this@MainActivity,
-                        "Pas assez d'amiibos (${allAmiibos.size}) pour ${minQuestions} questions !",
+                        "Pas assez d'amiibos (${filteredAmiibos.size}) pour $minQuestions questions !",
                         Toast.LENGTH_LONG
                     ).show()
                     ui.loaderLottie.visibility = View.GONE
@@ -164,10 +165,9 @@ class MainActivity : AppCompatActivity() {
                 localRealm.executeTransaction { transactionRealm ->
                     transactionRealm.delete(AmiiboRealm::class.java)
 
-                    allAmiibos.forEach { apiAmiibo ->
+                    filteredAmiibos.forEach { apiAmiibo ->
                         val id = "${apiAmiibo.name}_${apiAmiibo.gameSeries}"
 
-                        // Juste au cas où
                         transactionRealm.where(AmiiboRealm::class.java)
                             .equalTo("id", id)
                             .findFirst()
@@ -190,6 +190,14 @@ class MainActivity : AppCompatActivity() {
                 startActivity(Intent(this@MainActivity, GameActivity::class.java))
             }
         }
+    }
+
+    private fun resetUI() {
+        ui.loaderLottie.visibility = View.GONE
+        ui.container.alpha = 1f
+        ui.btnStartGame.isEnabled = true
+        ui.listViewCategories.isEnabled = true
+        ui.footerIconLeft.isEnabled = true
     }
 
     //* Menu d'options
